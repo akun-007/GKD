@@ -1,0 +1,45 @@
+{
+  id: 1700000001,
+  name: '开屏广告跳过规则',
+  version: 1,
+  author: 'liuyongkun',
+  checkUpdateUrl: './gkd.version.json5',
+  supportUri: 'https://github.com/',
+  categories: [
+    {
+      key: 0,
+      name: '广告',
+    },
+  ],
+  globalGroups: [
+    {
+      key: 0,
+      name: '开屏广告',
+      desc: '匹配应用启动时常见的跳过按钮。',
+      enable: true,
+      fastQuery: true,
+      matchTime: 10000,
+      actionMaximum: 1,
+      resetMatch: 'app',
+      actionCd: 1000,
+      rules: [
+        {
+          key: 0,
+          name: '跳过',
+          matches: '[text*="跳过"][text.length<10][visibleToUser=true]',
+        },
+        {
+          key: 1,
+          name: '跳过广告',
+          matches: '[text*="跳过广告"][text.length<12][visibleToUser=true]',
+        },
+        {
+          key: 2,
+          name: 'Skip',
+          matches: '[text~="(?i)^skip$"][visibleToUser=true]',
+        },
+      ],
+    },
+  ],
+  apps: [],
+}
