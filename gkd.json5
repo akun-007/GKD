@@ -1,7 +1,7 @@
 {
   id: 1700000001,
   name: '开屏广告跳过规则',
-  version: 2,
+  version: 3,
   author: 'liuyongkun',
   checkUpdateUrl: './gkd.version.json5',
   supportUri: 'https://github.com/akun-007/GKD',
@@ -70,6 +70,33 @@
               key: 1,
               name: '按文本匹配',
               matches: '[text*="跳过"][visibleToUser=true]',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      id: 'com.dayunlinks.cloudbirds',
+      name: '千鸟物联',
+      groups: [
+        {
+          key: 0,
+          name: '广告-进入首页后的弹窗',
+          desc: '关闭进入首页后出现的小弹窗广告，点击弹窗右上角的叉号。',
+          enable: true,
+          matchTime: 30000,
+          actionMaximum: 1,
+          resetMatch: 'app',
+          rules: [
+            {
+              key: 0,
+              name: '按叉号或关闭描述匹配',
+              matches: '[text~="^(×|✕|✖|X|x)$" || desc~="(?i)^(关闭|close|dismiss)$"][clickable=true][visibleToUser=true][width<200][height<200]',
+            },
+            {
+              key: 1,
+              name: '按关闭控件名称匹配',
+              matches: '[vid~="(?i).*(close|dismiss|cancel).*"][clickable=true][visibleToUser=true][width<200][height<200]',
             },
           ],
         },
