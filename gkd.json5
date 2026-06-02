@@ -1,10 +1,10 @@
 {
   id: 1700000001,
   name: '开屏广告跳过规则',
-  version: 1,
+  version: 2,
   author: 'liuyongkun',
   checkUpdateUrl: './gkd.version.json5',
-  supportUri: 'https://github.com/',
+  supportUri: 'https://github.com/akun-007/GKD',
   categories: [
     {
       key: 0,
@@ -35,11 +35,45 @@
         },
         {
           key: 2,
+          name: '倒计时跳过',
+          matches: '[text~="^([0-9]+\\s*)?跳过(广告)?$" || desc~="^([0-9]+\\s*)?跳过(广告)?$"][visibleToUser=true]',
+        },
+        {
+          key: 3,
           name: 'Skip',
-          matches: '[text~="(?i)^skip$"][visibleToUser=true]',
+          matches: '[text~="(?i)^skip$" || desc~="(?i)^skip$"][visibleToUser=true]',
         },
       ],
     },
   ],
-  apps: [],
+  apps: [
+    {
+      id: 'com.tencent.qqlive',
+      name: '腾讯视频',
+      groups: [
+        {
+          key: 0,
+          name: '开屏广告',
+          desc: '腾讯视频启动广告跳过按钮。',
+          enable: true,
+          fastQuery: true,
+          matchTime: 10000,
+          actionMaximum: 1,
+          resetMatch: 'app',
+          rules: [
+            {
+              key: 0,
+              name: '按控件 ID 匹配',
+              matches: '[id="com.tencent.qqlive:id/skip_view"][visibleToUser=true]',
+            },
+            {
+              key: 1,
+              name: '按文本匹配',
+              matches: '[text*="跳过"][visibleToUser=true]',
+            },
+          ],
+        },
+      ],
+    },
+  ],
 }
